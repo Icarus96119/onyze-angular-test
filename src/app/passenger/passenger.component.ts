@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 
-import { PaymentGateway } from '../core/models/passenger';
+import { Passenger, PaymentGateway } from '../core/models/passenger';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-passenger',
@@ -13,7 +14,8 @@ export class PassengerComponent implements OnInit {
   PaymentGateway = PaymentGateway;
   slideColor: ThemePalette = 'accent';
 
-  passenger$ = null;
+  // @ts-ignore
+  passenger$: BehaviorSubject<Passenger>;
 
   constructor(
   ) { }

@@ -3,7 +3,7 @@
     <span class="text-info">PASSENGER INFO</span>
     <div class="d-flex align-items-center">
       <span class="text-dark font-weight-bold mr-10">Hide information</span>
-      <mat-slide-toggle [color]="slideColor" [checked]="(passenger$ | async)?.hideInformation"></mat-slide-toggle>
+      <mat-slide-toggle [color]="slideColor" [checked]="(passenger$ | async)?.hideInformation || false"></mat-slide-toggle>
     </div>
   </div>
   <div class="row">
@@ -39,16 +39,16 @@
         <div class="d-flex justify-content-center align-items-center bg-color-periwinkle width-30 height-30 border-radius-30 mr-10">
           <img class="width-15" src="assets/icons/check-mark.svg" alt="Check" loading="lazy">
         </div>
-        <app-label-value class="d-none d-lg-block position-absolute width-150 top-40" [isLabelBlack]="true" [label]="(passenger$ | async)?.fromAddress1" [value]="(passenger$ | async)?.fromAddress2"></app-label-value>
-        <app-label-value class="d-block d-lg-none position-absolute width-100 top-40" [isLabelBlack]="true" [label]="(passenger$ | async)?.fromAddress1" [value]="(passenger$ | async)?.fromAddress2"></app-label-value>
+        <app-label-value class="d-none d-lg-block position-absolute width-150 top-40" [isLabelBlack]="true" label="{{ (passenger$ | async)?.fromAddress1 || '' }}" value="{{ (passenger$ | async)?.fromAddress2 || '' }}"></app-label-value>
+        <app-label-value class="d-block d-lg-none position-absolute width-100 top-40" [isLabelBlack]="true" label="{{ (passenger$ | async)?.fromAddress1 || '' }}" value="{{ (passenger$ | async)?.fromAddress2 || '' }}"></app-label-value>
       </div>
       <div class="bg-color-silver-chalice line height-2 mr-10"></div>
       <div class="position-relative d-flex flex-column">
         <div class="d-flex justify-content-center align-items-center bg-color-zanah width-30 height-30 border-radius-30 mr-10">
           <img class="width-15" src="assets/icons/geolocation.svg" alt="Check" loading="lazy">
         </div>
-        <app-label-value class="d-none d-lg-block position-absolute width-150 top-40" [isLabelBlack]="true" [label]="(passenger$ | async)?.toAddress1" [value]="(passenger$ | async)?.toAddress2"></app-label-value>
-        <app-label-value class="d-block d-lg-none position-absolute width-80 top-40" [isLabelBlack]="true" [label]="(passenger$ | async)?.toAddress1" [value]="(passenger$ | async)?.toAddress2"></app-label-value>
+        <app-label-value class="d-none d-lg-block position-absolute width-150 top-40" [isLabelBlack]="true" label="{{ (passenger$ | async)?.toAddress1 || '' }}" value="{{(passenger$ | async)?.toAddress2 || '' }}" ></app-label-value>
+        <app-label-value class="d-block d-lg-none position-absolute width-80 top-40" [isLabelBlack]="true" label="{{ (passenger$ | async)?.toAddress1 || '' }}" value="{{(passenger$ | async)?.toAddress2 || '' }}"></app-label-value>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@
     <div class="bottom d-flex justify-content-around border-top-2 border-color-silver-chalice py-30">
       <app-label-value [isLabelBlack]="true" label="{{ (passenger$ | async)?.distance }} km" value="Distance"></app-label-value>
       <app-label-value [isLabelBlack]="true" label="{{ (passenger$ | async)?.time }} min" value="Time"></app-label-value>
-      <app-label-value [isLabelBlack]="true" label="{{ (passenger$ | async)?.price | currency }}" value="Price"></app-label-value>
+      <app-label-value [isLabelBlack]="true" label="{{ ((passenger$ | async)?.price || 0) | currency }}" value="Price"></app-label-value>
       <app-label-value [isLabelBlack]="true" label="{{ (passenger$ | async)?.energy }} kWh" value="Energy"></app-label-value>
     </div>
   </div>
